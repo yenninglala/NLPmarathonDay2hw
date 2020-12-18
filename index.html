@@ -13076,16 +13076,32 @@ div#notebook {
 
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[15]:</div>
+<div class="prompt input_prompt">In&nbsp;[85]:</div>
 <div class="inner_cell">
     <div class="input_area">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="n">test_string</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;5.9&#39;</span><span class="p">,</span> <span class="s1">&#39;30&#39;</span><span class="p">,</span> <span class="s1">&#39;½&#39;</span><span class="p">,</span> <span class="s1">&#39;³&#39;</span><span class="p">,</span> <span class="s1">&#39;⑬&#39;</span><span class="p">]</span>
 <span class="k">def</span> <span class="nf">spam</span><span class="p">(</span><span class="n">s</span><span class="p">,</span> <span class="n">isnumeric_count</span><span class="p">,</span> <span class="n">isdigit_count</span><span class="p">,</span> <span class="n">isdecimal_count</span><span class="p">):</span>
     <span class="k">for</span> <span class="n">attr</span> <span class="ow">in</span> <span class="p">[</span><span class="s1">&#39;isnumeric&#39;</span><span class="p">,</span> <span class="s1">&#39;isdecimal&#39;</span><span class="p">,</span> <span class="s1">&#39;isdigit&#39;</span><span class="p">]:</span>
-        <span class="s1">&#39;練習部分&#39;</span>
-        <span class="nb">print</span><span class="p">(</span><span class="s1">&#39;isnumeric_count: </span><span class="si">{}</span><span class="s1">&#39;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">isnumeric_count</span><span class="p">))</span>     
-        <span class="nb">print</span><span class="p">(</span><span class="s1">&#39;isdigit_count: </span><span class="si">{}</span><span class="s1">&#39;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">isdigit_count</span><span class="p">))</span>     
-        <span class="nb">print</span><span class="p">(</span><span class="s1">&#39;isdecimal_count: </span><span class="si">{}</span><span class="s1">&#39;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">isdecimal_count</span><span class="p">))</span>  
+        <span class="k">if</span> <span class="n">attr</span> <span class="o">==</span> <span class="s1">&#39;isnumeric&#39;</span><span class="p">:</span>
+            <span class="k">if</span> <span class="nb">getattr</span><span class="p">(</span><span class="n">s</span><span class="p">,</span> <span class="n">attr</span><span class="p">)():</span>
+                <span class="n">isnumeric_count</span><span class="o">+=</span><span class="mi">1</span>
+        <span class="k">elif</span> <span class="n">attr</span> <span class="o">==</span> <span class="s1">&#39;isdecimal&#39;</span><span class="p">:</span>
+            <span class="k">if</span> <span class="nb">getattr</span><span class="p">(</span><span class="n">s</span><span class="p">,</span> <span class="n">attr</span><span class="p">)():</span>
+                <span class="n">isdecimal_count</span><span class="o">+=</span><span class="mi">1</span>
+        <span class="k">elif</span> <span class="n">attr</span> <span class="o">==</span> <span class="s1">&#39;isdigit&#39;</span><span class="p">:</span>
+            <span class="k">if</span> <span class="nb">getattr</span><span class="p">(</span><span class="n">s</span><span class="p">,</span> <span class="n">attr</span><span class="p">)():</span>
+                <span class="n">isdigit_count</span><span class="o">+=</span><span class="mi">1</span>
+    <span class="k">return</span> <span class="n">isnumeric_count</span><span class="p">,</span> <span class="n">isdigit_count</span><span class="p">,</span> <span class="n">isdecimal_count</span>
+<span class="n">isnumeric_count</span> <span class="o">=</span> <span class="mi">0</span>
+<span class="n">isdigit_count</span> <span class="o">=</span> <span class="mi">0</span> 
+<span class="n">isdecimal_count</span> <span class="o">=</span> <span class="mi">0</span>
+
+<span class="k">for</span> <span class="n">string_item</span> <span class="ow">in</span> <span class="n">test_string</span><span class="p">:</span>
+    <span class="n">isnumeric_count</span><span class="p">,</span> <span class="n">isdigit_count</span><span class="p">,</span> <span class="n">isdecimal_count</span> <span class="o">=</span> <span class="n">spam</span><span class="p">(</span><span class="n">string_item</span><span class="p">,</span> <span class="n">isnumeric_count</span><span class="p">,</span> <span class="n">isdigit_count</span><span class="p">,</span> <span class="n">isdecimal_count</span><span class="p">)</span>
+
+<span class="nb">print</span><span class="p">(</span><span class="s1">&#39;isnumeric_count: </span><span class="si">{}</span><span class="s1">&#39;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">isnumeric_count</span><span class="p">))</span>     
+<span class="nb">print</span><span class="p">(</span><span class="s1">&#39;isdigit_count: </span><span class="si">{}</span><span class="s1">&#39;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">isdigit_count</span><span class="p">))</span>     
+<span class="nb">print</span><span class="p">(</span><span class="s1">&#39;isdecimal_count: </span><span class="si">{}</span><span class="s1">&#39;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">isdecimal_count</span><span class="p">))</span>  
 
 <span class="c1"># Ans</span>
 <span class="c1"># isnumeric_count: 4</span>
@@ -13094,6 +13110,26 @@ div#notebook {
 </pre></div>
 
     </div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+
+<div class="output_area">
+
+    <div class="prompt"></div>
+
+
+<div class="output_subarea output_stream output_stdout output_text">
+<pre>isnumeric_count: 4
+isdigit_count: 2
+isdecimal_count: 1
+</pre>
+</div>
+</div>
+
 </div>
 </div>
 
@@ -13180,7 +13216,7 @@ Precision:96.29%
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[84]:</div>
+<div class="prompt input_prompt">In&nbsp;[86]:</div>
 <div class="inner_cell">
     <div class="input_area">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="n">number</span> <span class="o">=</span> <span class="mf">3.1415926</span>
@@ -13193,7 +13229,7 @@ Precision:96.29%
 
 <span class="c1">#&#39;314.16%&#39;</span>
 
-<span class="nb">print</span><span class="p">(</span><span class="s1">&#39;</span><span class="si">{:0&lt;11}</span><span class="s1">&#39;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">number</span><span class="p">))</span>
+<span class="nb">print</span><span class="p">(</span><span class="s1">&#39;</span><span class="si">{:0&lt;10f}</span><span class="s1">&#39;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">number</span><span class="p">))</span>
 
 <span class="c1">#&#39;3.14159300&#39;</span>
 </pre></div>
@@ -13214,7 +13250,7 @@ Precision:96.29%
 <div class="output_subarea output_stream output_stdout output_text">
 <pre>3.14e+00
 314.16%
-3.141592600
+3.14159300
 </pre>
 </div>
 </div>
